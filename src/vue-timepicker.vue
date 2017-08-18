@@ -388,8 +388,8 @@ export default {
         <li class="hint" v-text="'นาที'"></li>
         <li v-for="m in minutes" v-text="m" :class="{active: minute === m}" @click.stop="select('minute', m)"></li>
       </ul>
-      <ul class="seconds" v-if="'วินาที'">
-        <li class="hint" v-text="secondType"></li>
+      <ul class="seconds" v-if="secondType">
+        <li class="hint" v-text="'วินาที'"></li>
         <li v-for="s in seconds" v-text="s" :class="{active: second === s}" @click.stop="select('second', s)"></li>
       </ul>
       <ul class="apms" v-if="apmType">
