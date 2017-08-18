@@ -139,7 +139,9 @@ export default {
       const hoursCount = (this.hourType === 'h' || this.hourType === 'hh') ? 12 : 24
       this.hours = []
       for (let i = 0; i < hoursCount; i++) {
-        this.hours.push(this.formatValue(this.hourType, i))
+        if ( i >= 7 || i >= 18 ) {
+          this.hours.push(this.formatValue(this.hourType, i))
+        }
       }
     },
 
@@ -379,21 +381,19 @@ export default {
   <div class="dropdown" v-show="showDropdown">
     <div class="select-list">
       <ul class="hours">
-        <li class="hint" v-text="hourType"></li>
+        <li class="hint" v-text="'ชั่วโมง'"></li>
         <li v-for="hr in hours" v-text="hr" :class="{active: hour === hr}" @click.stop="select('hour', hr)"></li>
       </ul>
       <ul class="minutes">
-        <li class="hint" v-text="minuteType"></li>
+        <li class="hint" v-text="'นาที'"></li>
         <li v-for="m in minutes" v-text="m" :class="{active: minute === m}" @click.stop="select('minute', m)"></li>
       </ul>
-      <ul class="seconds" v-if="secondType">
+      <ul class="seconds" v-if="'วินาที'">
         <li class="hint" v-text="secondType"></li>
         <li v-for="s in seconds" v-text="s" :class="{active: second === s}" @click.stop="select('second', s)"></li>
       </ul>
       <ul class="apms" v-if="apmType">
-        <li class="hint" v-if="apmType === 'HH'" v-text="'ชั่วโมง'"></li>
-        <li class="hint" v-else-if="apmType === 'mm'" v-text="'นาที'"></li>
-        <li class="hint" v-else v-text="apmType"></li>
+        <li class="hint" v-text="apmType"></li>
         <li v-for="a in apms" v-text="a" :class="{active: apm === a && (apm >= 7 || apm <= 18)}" @click.stop="select('apm', a)"></li>
       </ul>
     </div>
