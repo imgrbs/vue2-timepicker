@@ -391,8 +391,10 @@ export default {
         <li v-for="s in seconds" v-text="s" :class="{active: second === s}" @click.stop="select('second', s)"></li>
       </ul>
       <ul class="apms" v-if="apmType">
+        <li class="hint" v-if="apmType === 'HH'" v-text="'ชั่วโมง'"></li>
+        <li class="hint" v-if="apmType === 'mm'" v-text="'นาที'"></li>
         <li class="hint" v-text="apmType"></li>
-        <li v-for="a in apms" v-text="a" :class="{active: apm === a}" @click.stop="select('apm', a)"></li>
+        <li v-for="a in apms" v-text="a" :class="{active: apm === a && (apm >= 7 || apm <= 18)}" @click.stop="select('apm', a)"></li>
       </ul>
     </div>
   </div>
