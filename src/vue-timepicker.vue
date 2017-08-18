@@ -379,7 +379,7 @@ export default {
   <div class="dropdown" v-show="showDropdown">
     <div class="select-list">
       <ul class="hours">
-        <li class="hint" v-text="'ชั่วโมง'"></li>
+        <li class="hint" v-text="'เวลา'"></li>
         <li v-for="hr in hours" v-text="hr" :class="{active: hour === hr}" @click.stop="select('hour', hr)"></li>
       </ul>
       <ul class="minutes">
